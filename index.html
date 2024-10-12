@@ -12,58 +12,60 @@
         <nav>
             <a href="#tasks">View Tasks</a> | 
             <a href="#post-task">Post a Task</a> | 
-            <a href="#admin">Admin Dashboard</a> | 
-            <a href="#rewards">Your Rewards</a>
+            <a href="#admin">Admin Dashboard</a>
         </nav>
     </header>
 
-    <section id="tasks">
-        <h2>Available Tasks</h2>
-        <div class="task-list">
-            <!-- Dynamically generated task cards go here -->
-        </div>
-    </section>
+    <main>
+        <section id="tasks">
+            <h2>Available Tasks</h2>
+            <div class="task-list">
+                <!-- Dynamically generated task cards will appear here -->
+            </div>
+        </section>
 
-    <section id="post-task">
-        <h2>Post a New Task</h2>
-        <form id="task-form">
-            <label for="task-title">Task Title:</label>
-            <input type="text" id="task-title" name="task-title" required>
-            <label for="task-desc">Description:</label>
-            <textarea id="task-desc" name="task-desc" required></textarea>
-            <button type="submit">Submit Task</button>
-        </form>
-    </section>
+        <section id="post-task">
+            <h2>📝 Post a New Task</h2>
+            <form id="task-form">
+                <label for="task-title">Task Title:</label>
+                <input type="text" id="task-title" name="task-title" required>
+                
+                <label for="task-desc">Description:</label>
+                <textarea id="task-desc" name="task-desc" required></textarea>
+                
+                <button type="submit">Submit Task</button>
+            </form>
+        </section>
 
-    <section id="admin">
-        <h2>Admin Dashboard</h2>
-        <h3>Pending Tasks</h3>
-        <label for="task-filter">Filter Tasks:</label>
-        <select id="task-filter">
-            <option value="all">All</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-        </select>
-        <div class="task-review">
-            <!-- Admin task review will be here -->
-        </div>
-    </section>
+        <section id="admin">
+            <h2>👩‍💻 Admin Dashboard</h2>
+            <label for="task-filter">Filter Tasks:</label>
+            <select id="task-filter">
+                <option value="all">All Tasks</option>
+                <option value="pending">Pending Tasks</option>
+                <option value="approved">Approved Tasks</option>
+            </select>
+            <div class="task-review">
+                <!-- Admin task review will be populated here -->
+            </div>
+        </section>
 
-    <section id="rewards">
-        <h2>Your Rewards</h2>
-        <div class="reward-list">
-            <!-- Rewards for completed tasks will be displayed here -->
-        </div>
-    </section>
+        <section id="rewards">
+            <h2>Your Rewards 🏆</h2>
+            <div class="reward-list">
+                <!-- Rewards for completed tasks will be displayed here -->
+            </div>
+        </section>
 
-    <!-- Task Details Modal -->
-    <div id="task-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Task Details</h3>
-            <p id="modal-description"></p>
+        <!-- Task Details Modal -->
+        <div id="task-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Task Details</h3>
+                <p id="modal-description"></p>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
