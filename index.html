@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task & Reward</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -35,10 +36,47 @@
 
     <section id="admin">
         <h2>Admin Dashboard</h2>
+        <h3>Pending Tasks</h3>
+        <label for="task-filter">Filter Tasks:</label>
+        <select id="task-filter">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+        </select>
         <div class="task-review">
             <!-- Admin task review will be here -->
+            <div class="task-card">
+                <h4>Sample Task 1</h4>
+                <p>Description of Sample Task 1.</p>
+                <button>Approve</button>
+                <button>Reject</button>
+                <button class="view-details">View Details</button>
+            </div>
+            <div class="task-card">
+                <h4>Sample Task 2</h4>
+                <p>Description of Sample Task 2.</p>
+                <button>Approve</button>
+                <button>Reject</button>
+                <button class="view-details">View Details</button>
+            </div>
         </div>
     </section>
+
+    <section id="rewards">
+        <h2>Your Rewards</h2>
+        <div class="reward-list">
+            <!-- Rewards for completed tasks will be displayed here -->
+        </div>
+    </section>
+
+    <!-- Task Details Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Task Details</h3>
+            <p id="modal-description"></p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
