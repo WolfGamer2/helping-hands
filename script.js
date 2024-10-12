@@ -1,50 +1,56 @@
+let tasks = [];
+
 document.getElementById('task-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const title = document.getElementById('task-title').value;
     const desc = document.getElementById('task-desc').value;
     
     const task = {
+        id: Date.now(), // Unique ID for each task
         title: title,
         description: desc,
         status: 'pending' // Default status
     };
 
-    // Add task to the task list
-    addTaskToList(task);
-    
-    // Clear the form
-    document.getElementById('task-form').reset();
+    tasks.push(task); // Add task to the array
+    renderTasks(); // Render tasks
+    document.getElementById('task-form').reset(); // Clear the form
 });
 
-function addTaskToList(task) {
+function renderTasks() {
     const taskList = document.querySelector('.task-list');
-    const taskCard = document.createElement('div');
-    taskCard.className = 'task-card';
-    taskCard.innerHTML = `
-        <h4>${task.title}</h4>
-        <p>${task.description}</p>
-        <p>Status: ${task.status}</p>
-        <button class="approve-button">Approve</button>
-        <button class="reject-button">Reject</button>
-        <button class="view-details">View Details</button>
-    `;
-    taskList.appendChild(taskCard);
+    taskList.innerHTML = ''; // Clear previous tasks
 
-    // Approve button functionality
-    taskCard.querySelector('.approve-button').addEventListener('click', function () {
-        task.status = 'approved';
-        taskCard.querySelector('p:last-child').innerText = `Status: ${task.status}`;
-        updateRewards(task.title);
-    });
+    tasks.forEach(task => {
+        const taskCard = document.createElement('div');
+        taskCard.className = 'task-card';
+        taskCard.innerHTML = `
+            <h4>${task.title}</h4>
+            <p>${task.description}</p>
+            <p>Status: <strong>${task.status}</strong></p>
+            <button class="approve-button">Approve</button>
+            <button class="reject-button">Reject</button>
+            <button class="view-details">View Details</button>
+        `;
+        taskList.appendChild(taskCard);
 
-    // Reject button functionality
-    taskCard.querySelector('.reject-button').addEventListener('click', function () {
-        taskCard.remove(); // Remove the task card
-    });
+        // Approve button functionality
+        taskCard.querySelector('.approve-button').addEventListener('click', function () {
+            task.status = 'approved';
+            renderTasks(); // Re-render tasks after approval
+            updateRewards(task.title); // Update rewards for approved tasks
+        });
 
-    // View details button functionality
-    taskCard.querySelector('.view-details').addEventListener('click', function () {
-        showModal(task);
+        // Reject button functionality
+        taskCard.querySelector('.reject-button').addEventListener('click', function () {
+            tasks = tasks.filter(t => t.id !== task.id); // Remove the task from the array
+            renderTasks(); // Re-render tasks
+        });
+
+        // View details button functionality
+        taskCard.querySelector('.view-details').addEventListener('click', function () {
+            showModal(task);
+        });
     });
 }
 
@@ -52,39 +58,45 @@ function updateRewards(taskTitle) {
     const rewardList = document.querySelector('.reward-list');
     const rewardCard = document.createElement('div');
     rewardCard.className = 'reward-card';
-    rewardCard.innerText = `✅ You completed: ${taskTitle}`;
+    rewardCard.innerText = `You've earned a reward for completing: ${taskTitle}`;
     rewardList.appendChild(rewardCard);
 }
 
+// Modal functionality
 function showModal(task) {
     const modal = document.getElementById('task-modal');
-    document.getElementById('modal-description').innerText = task.description;
-    modal.style.display = "block";
+    const modalDescription = document.getElementById('modal-description');
+    modalDescription.innerText = task.description; // Show task description
+    modal.style.display = 'block'; // Show modal
 
-    // Close modal functionality
-    const span = document.getElementsByClassName("close")[0];
-    span.onclick = function() {
-        modal.style.display = "none";
+    const closeModal = document.querySelector('.close');
+    closeModal.onclick = function () {
+        modal.style.display = 'none'; // Close modal
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target === modal) {
-            modal.style.display = "none";
+            modal.style.display = 'none'; // Close modal on click outside
         }
     }
 }
 
-// Filter tasks based on status
+// Filter tasks in the admin section
 document.getElementById('task-filter').addEventListener('change', function () {
     const filterValue = this.value;
-    const taskCards = document.querySelectorAll('.task-card');
+    const taskReview = document.querySelector('.task-review');
+    taskReview.innerHTML = ''; // Clear previous filtered tasks
 
-    taskCards.forEach(card => {
-        const statusText = card.querySelector('p:last-child').innerText;
-        if (filterValue === 'all' || statusText.includes(filterValue)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
+    tasks.forEach(task => {
+        if (filterValue === 'all' || task.status === filterValue) {
+            const taskCard = document.createElement('div');
+            taskCard.className = 'task-card';
+            taskCard.innerHTML = `
+                <h4>${task.title}</h4>
+                <p>${task.description}</p>
+                <p>Status: <strong>${task.status}</strong></p>
+            `;
+            taskReview.appendChild(taskCard);
         }
     });
 });
