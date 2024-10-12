@@ -6,15 +6,19 @@
 }
 
 body {
-    background-color: #ffeb3b; /* Cheerful yellow */
+    background-color: #f0f4f8; /* Light gray for a modern feel */
     color: #333;
 }
 
 header {
-    background: #2196f3; /* Bright blue */
+    background: #4a90e2; /* Modern blue */
     color: #fff;
     padding: 20px;
     text-align: center;
+}
+
+nav {
+    margin: 10px 0;
 }
 
 nav a {
@@ -27,15 +31,19 @@ nav a {
 }
 
 nav a:hover {
-    background: #1976d2; /* Darker blue on hover */
+    background: #357ab8; /* Darker blue on hover */
+}
+
+main {
+    padding: 20px;
 }
 
 section {
-    margin: 20px;
+    margin: 20px 0;
     padding: 20px;
     background: #fff; /* White background for sections */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
@@ -48,12 +56,17 @@ h1, h2 {
 }
 
 .task-card {
-    background: #e3f2fd; /* Light blue background */
+    background: #e6f7ff; /* Light blue background */
     padding: 15px;
     margin: 10px 0;
-    border: 1px solid #90caf9;
+    border: 1px solid #9dd6ff; /* Light border */
     border-radius: 5px;
     position: relative;
+    transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
 }
 
 .task-card button {
@@ -61,7 +74,7 @@ h1, h2 {
 }
 
 button {
-    background: #4caf50; /* Green */
+    background: #28a745; /* Green */
     color: white;
     border: none;
     padding: 10px;
@@ -72,7 +85,7 @@ button {
 }
 
 button:hover {
-    background: #388e3c; /* Darker green on hover */
+    background: #218838; /* Darker green on hover */
 }
 
 form {
@@ -88,11 +101,11 @@ form input, form textarea {
 }
 
 form button {
-    background: #2196f3; /* Bright blue for submit button */
+    background: #007bff; /* Blue for submit button */
 }
 
 form button:hover {
-    background: #1976d2; /* Darker blue on hover */
+    background: #0069d9; /* Darker blue on hover */
 }
 
 /* Modal styles */
@@ -136,9 +149,17 @@ form button:hover {
     padding: 20px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .reward-list {
     margin-top: 10px;
+}
+
+.reward-card {
+    background: #d4edda; /* Light green for rewards */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #c3e6cb; /* Green border */
+    border-radius: 5px;
 }
