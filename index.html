@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task & Reward</title>
+</head>
+<body>
+    <header>
+        <h1>Task Selector</h1>
+        <nav>
+            <a href="#tasks">View Tasks</a> | 
+            <a href="#post-task">Post a Task</a> | 
+            <a href="#admin">Admin Dashboard</a>
+        </nav>
+    </header>
+
+    <section id="tasks">
+        <h2>Available Tasks</h2>
+        <div class="task-list">
+            <!-- Dynamically generated task cards go here -->
+        </div>
+    </section>
+
+    <section id="post-task">
+        <h2>Post a New Task</h2>
+        <form id="task-form">
+            <label for="task-title">Task Title:</label><br>
+            <input type="text" id="task-title" name="task-title" required><br><br>
+            <label for="task-desc">Description:</label><br>
+            <textarea id="task-desc" name="task-desc" required></textarea><br><br>
+            <button type="submit">Submit Task</button>
+        </form>
+    </section>
+
+    <section id="admin">
+        <h2>Admin Dashboard</h2>
+        <div class="task-review">
+            <!-- Admin task review will be here -->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
